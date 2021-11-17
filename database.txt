@@ -1,0 +1,546 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.2.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jul 20, 2014 at 07:58 AM
+-- Server version: 5.0.45
+-- PHP Version: 5.2.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `large_heart`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `access_log`
+--
+
+CREATE TABLE `access_log` (
+  `id` int(20) NOT NULL auto_increment,
+  `user` varchar(50) NOT NULL,
+  `time_log` varchar(50) NOT NULL,
+  `date_log` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `access_log`
+--
+
+INSERT INTO `access_log` (`id`, `user`, `time_log`, `date_log`) VALUES
+(1, 'o', '6:01pm', '19th of Jul, 2014'),
+(2, 't', '11:27pm', '19th of Jul, 2014'),
+(3, 't', '7:37am', '20th of Jul, 2014');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `id` int(2) NOT NULL auto_increment,
+  `acct_name` varchar(100) NOT NULL,
+  `acct_no` varchar(20) NOT NULL,
+  `acct_bal` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `acct_name`, `acct_no`, `acct_bal`) VALUES
+(1, 'GTBank Saving', '0124344650', ''),
+(2, 'GTBank Current', '2435422001', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_record`
+--
+
+CREATE TABLE `account_record` (
+  `id` int(2) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `acct_name` varchar(50) NOT NULL,
+  `depositor` varchar(50) NOT NULL,
+  `amount` varchar(20) NOT NULL,
+  `teller` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `account_record`
+--
+
+INSERT INTO `account_record` (`id`, `dat`, `acct_name`, `depositor`, `amount`, `teller`) VALUES
+(7, '2014-07-19', 'GTBank Current', 'Ajayi Temitope', '50000', '323423'),
+(8, '2014-07-19', 'GTBank Saving', 'Ajayi Temitope', '28500', '3465643'),
+(9, '2014-07-20', 'GTBank Current', 'Edet Joseph', '50000', '323423'),
+(10, '0000-00-00', 'GTBank Saving', 'Ajayi Temitope', '28500', '111111'),
+(11, '2014-05-20', 'GTBank Saving', 'Ajayi Temitope', '500', '111111');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(5) NOT NULL auto_increment,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `fname`, `lname`, `user`, `pass`, `type`) VALUES
+(4, 'Ajayi', 'Temitope', 't', 't', 'Super'),
+(6, 'o', 'o', 'o', 'o', 'Operator'),
+(7, 'd', 'd', 'd', 'd', 'Ordinary'),
+(8, 's', 's', 's', 's', 'Supervisor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients`
+--
+
+CREATE TABLE `clients` (
+  `id` int(10) NOT NULL auto_increment,
+  `company` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`id`, `company`, `address`, `phone`, `email`) VALUES
+(1, 'Topsite Infotech', '5, Agunbiade Street, Somolu', '08032323232', 'topsite_edu@yahoo.com'),
+(2, 'Florintech Limited', '5, Fola Street, BAriga', '08050680115', 'topsitech@gmail.com'),
+(3, 'Adeola Seun', '3, Apoti Street, Palm-Groove, Lagos', '07070707070', 'adeolaseun@yahoo.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `debt`
+--
+
+CREATE TABLE `debt` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `total_amount` varchar(20) NOT NULL,
+  `amount_paid` varchar(20) NOT NULL,
+  `balance` varchar(20) NOT NULL,
+  `ord_by` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `debt`
+--
+
+INSERT INTO `debt` (`id`, `dat`, `item_id`, `total_amount`, `amount_paid`, `balance`, `ord_by`, `ord_no`) VALUES
+(3, '2014-01-18', 'FLEX_LIGHT', '11800', '10000', '1800', 'Topsite Infotech', '000013'),
+(15, '2014-07-19', 'OPAQUE', '2000', '1000', '1000', 'Topsite Infotech', '000015'),
+(16, '2014-07-19', 'FLEX_LIGHT', '1800', '500', '1300', 'Topsite Infotech', '000014'),
+(17, '2014-07-19', 'FLEX_LIGHT', '2500', '2000', '500', 'Topsite Infotech', '000011'),
+(18, '2014-07-19', 'FLEX_LIGHT', '9600', '8000', '1600', 'Florintech Limited', '000017'),
+(19, '2014-07-19', 'OPAQUE', '4800', '4000', '800', 'Topsite Infotech', '000018'),
+(20, '2014-07-19', 'OPAQUE', '4800', '3500', '1300', 'Topsite Infotech', '000019');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `debt_payment`
+--
+
+CREATE TABLE `debt_payment` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `total_amount` varchar(20) NOT NULL,
+  `amount_paid` varchar(20) NOT NULL,
+  `balance` varchar(20) NOT NULL,
+  `paid_by` varchar(50) NOT NULL,
+  `record_by` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `debt_payment`
+--
+
+INSERT INTO `debt_payment` (`id`, `dat`, `item_id`, `total_amount`, `amount_paid`, `balance`, `paid_by`, `record_by`, `ord_no`) VALUES
+(1, '2014-07-19', 'OPAQUE', '2000', '1000', '1000', 'Topsite Infotech', 'Ajayi Temitope', '000015'),
+(2, '2014-07-19', 'FLEX_LIGHT', '1800', '500', '1300', 'Topsite Infotech', 'Ajayi Temitope', '000014'),
+(3, '2014-07-19', 'FLEX_LIGHT', '2500', '2000', '500', 'Topsite Infotech', 'Ajayi Temitope', '000011');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_ordered`
+--
+
+CREATE TABLE `good_ordered` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `des` varchar(100) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `sale_price` varchar(20) NOT NULL,
+  `width` varchar(20) NOT NULL,
+  `height` varchar(20) NOT NULL,
+  `qty` varchar(10) NOT NULL default '1',
+  `discount` varchar(50) NOT NULL,
+  `amount_paid` varchar(20) NOT NULL,
+  `ord_by` varchar(50) NOT NULL,
+  `approve_by` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `good_ordered`
+--
+
+INSERT INTO `good_ordered` (`id`, `dat`, `item_id`, `des`, `price`, `sale_price`, `width`, `height`, `qty`, `discount`, `amount_paid`, `ord_by`, `approve_by`, `ord_no`) VALUES
+(1, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '6', '5', '2', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000001'),
+(2, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '6', '4', '3', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000002'),
+(3, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '3', '2', '1', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000003'),
+(4, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '12', '11', '2', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000004'),
+(5, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '4', '4', '4', '200', '', 'Topsite Infotech', 'Ajayi Temitope', '000005'),
+(6, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '4', '4', '4', '200', '', 'Topsite Infotech', 'Ajayi Temitope', '000006'),
+(7, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '3', '4', '1', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000007'),
+(8, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '7', '10', '2', '200', '', 'Florintech Limited', 'Godwin Adenowo', '000008'),
+(9, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '1', '1', '4', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000009'),
+(10, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '4', '3', '4', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000010'),
+(11, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '7', '5', '4', '', '', 'Topsite Infotech', 'Ajayi Temitope', '000011'),
+(12, '2014-07-18', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '4', '8', '3', '', '', 'Florintech Limited', 'Ajayi Temitope', '000012'),
+(13, '2014-01-18', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '10', '12', '1', '200', '', 'Topsite Infotech', 'Ajayi Temitope', '000013'),
+(14, '2014-07-18', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '10', '12', '1', '200', '', 'Topsite Infotech', 'Ajayi Temitope', '000014'),
+(15, '2014-07-18', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '20', '5', '1', '', '8000', 'Topsite Infotech', 'Ajayi Temitope', '000015'),
+(16, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '6', '7', '2', '100', '8300', 'Adeola Seun', 'Ajayi Temitope', '000016'),
+(17, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '8', '6', '2', '', '8000', 'Florintech Limited', 'Ajayi Temitope', '000017'),
+(18, '2014-07-19', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '4', '4', '3', '', '4000', 'Topsite Infotech', 'Ajayi Temitope', '000018'),
+(19, '2014-07-19', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '4', '4', '3', '', '3500', 'Topsite Infotech', 'Ajayi Temitope', '000019'),
+(20, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '2', '2', '1', '', '400', 'Adeola Seun', 'o o', '000020'),
+(21, '2014-07-19', 'SAV Light', 'SAV Light Weight Design', '75', '120', '6', '3', '1', '60', '2100', 'Adeola Seun', 'Ajayi Temitope', '000021');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_received`
+--
+
+CREATE TABLE `good_received` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `des` varchar(100) NOT NULL,
+  `in_stock` varchar(50) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `width` varchar(20) NOT NULL,
+  `height` varchar(20) NOT NULL,
+  `qty` varchar(10) NOT NULL,
+  `total_amount` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  `receive_by` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `good_received`
+--
+
+INSERT INTO `good_received` (`id`, `dat`, `company`, `item_id`, `des`, `in_stock`, `price`, `width`, `height`, `qty`, `total_amount`, `ord_no`, `receive_by`) VALUES
+(1, '2014-07-15', 'Florintech Limited', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '1920', '70', '7', '8', '', '3920', '000001', 'Seun'),
+(2, '2014-07-15', 'Florintech Limited', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '1976', '70', '1', '1', '1', '70', '000002', 'Funmi'),
+(3, '2014-07-15', 'Florintech Limited', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '1617', '70', '5', '4', '2', '2800', '000003', 'Seun'),
+(4, '2014-07-16', 'Florintech Limited', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '1527', '70', '10', '10', '2', '14000', '000004', 'Remi'),
+(5, '2014-07-16', 'aa', 'OPAQUE', 'OPAQUE - Non Transparent', '2392', '70', '10', '6', '1', '4200', '000005', 'Seyi'),
+(6, '2014-05-20', 'Florintech Limited', 'OPAQUE', 'OPAQUE - Non Transparent', '2160', '70', '5', '3', '1', '1050', '000006', 'Remi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_returned`
+--
+
+CREATE TABLE `good_returned` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `width` varchar(10) NOT NULL,
+  `height` varchar(10) NOT NULL,
+  `qty` varchar(50) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `discount` varchar(10) NOT NULL,
+  `total_amount` varchar(50) NOT NULL,
+  `return_by` varchar(50) NOT NULL,
+  `receive_by` varchar(50) NOT NULL,
+  `record_by` varchar(100) NOT NULL,
+  `reason` varchar(200) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `good_returned`
+--
+
+INSERT INTO `good_returned` (`id`, `dat`, `item_id`, `width`, `height`, `qty`, `price`, `discount`, `total_amount`, `return_by`, `receive_by`, `record_by`, `reason`, `ord_no`) VALUES
+(6, '2014-07-16', 'FLEX_LIGHT', '4', '4', '4', '100', '200', '6200', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000005'),
+(7, '2014-07-16', 'FLEX_LIGHT', '4', '4', '4', '100', '200', '6200', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000005'),
+(8, '2014-07-16', 'FLEX_LIGHT', '4', '4', '4', '100', '200', '6200', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000005'),
+(9, '2014-07-16', 'FLEX_LIGHT', '4', '4', '4', '100', '200', '6200', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000005'),
+(10, '2014-07-16', 'FLEX_LIGHT', '4', '4', '4', '100', '200', '6200', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000005'),
+(11, '2014-07-16', 'OPAQUE', '12', '11', '2', '100', '', '26400', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000004'),
+(12, '2014-07-16', 'FLEX_LIGHT', '3', '2', '1', '100', '', '600', 'Topsite Infotech', 'Funmi', 'Seun Kuti', 'Bad Printint', '000003'),
+(13, '2014-07-16', 'OPAQUE', '7', '10', '2', '100', '200', '13800', 'Florintech Limited', 'Ajayi Temitope', 'Seun Kuti', 'Not the required size', '000008');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(10) NOT NULL auto_increment,
+  `item_id` varchar(50) NOT NULL,
+  `des` varchar(100) NOT NULL,
+  `in_stock` int(10) NOT NULL,
+  `critical` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `sale_price` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `item_id`, `des`, `in_stock`, `critical`, `price`, `sale_price`) VALUES
+(1, 'FLEX_LIGHT', 'LIGHT FLEX 1MM', 1163, 20, '70', '100'),
+(2, 'OPAQUE', 'OPAQUE - Non Transparent', 2175, 20, '70', '100'),
+(3, 'SAV Light', 'SAV Light Weight Design', 4, 20, '75', '120');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_order`
+--
+
+CREATE TABLE `job_order` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `des` varchar(100) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `sale_price` varchar(20) NOT NULL,
+  `width` varchar(20) NOT NULL,
+  `height` varchar(20) NOT NULL,
+  `qty` varchar(10) NOT NULL default '1',
+  `discount` varchar(50) NOT NULL,
+  `ord_by` varchar(50) NOT NULL,
+  `approve_by` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  `processed` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `job_order`
+--
+
+INSERT INTO `job_order` (`id`, `dat`, `item_id`, `des`, `price`, `sale_price`, `width`, `height`, `qty`, `discount`, `ord_by`, `approve_by`, `ord_no`, `processed`) VALUES
+(2, '2014-07-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '1', '1', '4', '', 'Topsite Infotech', 'Ajayi Temitope', '000002', ''),
+(3, '2014-07-18', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '1', '1', '7', '', 'Florintech Limited', 'Ajayi Temitope', '000003', ''),
+(4, '2014-07-18', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '10', '12', '1', '200', 'Topsite Infotech', 'Ajayi Temitope', '000004', ''),
+(5, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '7', '6', '2', '1000', 'Florintech Limited', 'Ajayi Temitope', '000005', ''),
+(6, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '5', '5', '1', '', 'Topsite Infotech', 'Ajayi Temitope', '000006', 'no'),
+(7, '2014-07-19', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '100', '4', '4', '3', '', 'Topsite Infotech', 'Ajayi Temitope', '000007', 'yes'),
+(8, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '100', '2', '2', '1', '', 'Adeola Seun', 'o o', '000008', 'yes'),
+(9, '2014-07-19', 'SAV Light', 'SAV Light Weight Design', '75', '120', '6', '3', '1', '60', 'Adeola Seun', 'Ajayi Temitope', '000009', 'yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` int(10) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `post` varchar(50) NOT NULL,
+  `salary` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `name`, `address`, `phone`, `email`, `post`, `salary`) VALUES
+(2, 'Adeleye Seun', '3, Apoti Street, Somolu              ', '08080808080', 'top@yahoo.com', '', '25000'),
+(4, 'Adeolu Afolarin', '3, Deola Street, Bariga, Lagos', '09033432343', 'adeolu@yahoo.com', 'Secretary', '22000'),
+(5, 'AJAYI TEMITOPE', '5, Agunbiade Street, Somolu, Lagos', '07022334455', 'topsite_edu@yahoo.com', 'Managing Director', '78000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_salary`
+--
+
+CREATE TABLE `staff_salary` (
+  `id` int(10) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `salary` varchar(10) NOT NULL,
+  `extra` varchar(20) NOT NULL,
+  `netpay` varchar(20) NOT NULL,
+  `m` varchar(20) NOT NULL,
+  `y` varchar(20) NOT NULL,
+  `paid_by` varchar(50) NOT NULL,
+  `sys_ip` varchar(50) NOT NULL,
+  `dat` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `staff_salary`
+--
+
+INSERT INTO `staff_salary` (`id`, `name`, `address`, `phone`, `email`, `salary`, `extra`, `netpay`, `m`, `y`, `paid_by`, `sys_ip`, `dat`) VALUES
+(1, 'Adeleye Seun', '3, Apoti Street, Somolu              ', '08080808080', 'top@yahoo.com', '25000', '', '25000', 'Jul', '2014', 'Ajayi Temitope', '127.0.0.1', '0000-00-00'),
+(2, 'Adeolu Afolarin', '3, Deola Street, Bariga, Lagos', '09033432343', 'adeolu@yahoo.com', '22000', '2500', '24500', 'Jul', '2014', 'Ajayi Temitope', '127.0.0.1', '0000-00-00'),
+(3, 'AJAYI TEMITOPE', '5, Agunbiade Street, Somolu, Lagos', '07022334455', 'topsite_edu@yahoo.com', '78000', '5000', '83000', 'Jul', '2014', 'Ajayi Temitope', '127.0.0.1', '0000-00-00'),
+(4, 'Adeleye Seun', '3, Apoti Street, Somolu              ', '08080808080', 'top@yahoo.com', '25000', '', '25000', 'Aug', '2014', 'Ajayi Temitope', '127.0.0.1', '18 Jul, 2014'),
+(5, 'Adeleye Seun', '3, Apoti Street, Somolu              ', '08080808080', 'top@yahoo.com', '25000', '', '25000', 'Mar', '2014', 'Ajayi Temitope', '127.0.0.1', '20 Jul, 2014'),
+(6, 'Adeolu Afolarin', '3, Deola Street, Bariga, Lagos', '09033432343', 'adeolu@yahoo.com', '22000', '', '22000', 'Mar', '2014', 'Ajayi Temitope', '127.0.0.1', '20 Jul, 2014');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_record`
+--
+
+CREATE TABLE `stock_record` (
+  `id` int(20) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `item_id` varchar(50) NOT NULL,
+  `des` varchar(100) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `in_stock` varchar(50) NOT NULL,
+  `area` varchar(50) NOT NULL,
+  `now_stock` varchar(50) NOT NULL,
+  `ord_no` varchar(20) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `stock_record`
+--
+
+INSERT INTO `stock_record` (`id`, `dat`, `item_id`, `des`, `price`, `in_stock`, `area`, `now_stock`, `ord_no`, `user`) VALUES
+(1, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '2000', '80', '1920', '000001', 't'),
+(2, '2014-07-15', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '3000', '120', '2880', '000002', 't'),
+(3, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1920', '56', '1976', '000001', 't'),
+(4, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1976', '1', '1977', '000002', 't'),
+(5, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1977', '360', '1617', '000003', 't'),
+(6, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1617', '40', '1657', '000003', 't'),
+(7, '2014-07-15', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1657', '60', '1597', '000001', 't'),
+(8, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2880', '72', '2808', '000002', 't'),
+(9, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1597', '6', '1591', '000003', 't'),
+(10, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2808', '264', '2544', '000004', 't'),
+(11, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1591', '64', '1527', '000005', 't'),
+(12, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1591', '64', '1527', '000006', 't'),
+(13, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2544', '12', '2532', '000007', 't'),
+(14, '2014-07-16', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1527', '200', '1727', '000004', 't'),
+(15, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2532', '140', '2392', '000008', 't'),
+(16, '2014-07-16', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2392', '60', '2452', '000005', 't'),
+(17, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1727', '4', '1723', '000009', 't'),
+(18, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1727', '48', '1679', '000010', 't'),
+(19, '2014-01-17', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1727', '140', '1587', '000011', 't'),
+(20, '2014-07-18', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2452', '96', '2356', '000012', 't'),
+(21, '2014-01-18', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1587', '120', '1467', '000013', 't'),
+(22, '2014-07-18', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1467', '120', '1347', '000014', 't'),
+(23, '2014-07-18', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2356', '100', '2256', '000015', 't'),
+(24, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1347', '84', '1263', '000016', 't'),
+(25, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1263', '96', '1167', '000017', 't'),
+(26, '2014-07-19', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2256', '48', '2208', '000018', 't'),
+(27, '2014-07-19', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2208', '48', '2160', '000019', 't'),
+(28, '2014-07-19', 'FLEX_LIGHT', 'LIGHT FLEX 1MM', '70', '1167', '4', '1163', '000020', 't'),
+(29, '2014-07-19', 'SAV Light', 'SAV Light Weight Design', '75', '20', '18', '2', '000021', 't'),
+(30, '2014-05-20', 'OPAQUE', 'OPAQUE - Non Transparent', '70', '2160', '15', '2175', '000006', 't');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id` int(10) NOT NULL auto_increment,
+  `dat` date NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `contact` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id`, `dat`, `company`, `address`, `contact`, `phone`, `email`) VALUES
+(1, '2014-07-15', 'Florintech Limited', '3, Adeleye Street, Somolu, Lagos', 'Folarin Adeola', '07038383998', 'florintech@hotmail.com'),
+(2, '2014-07-16', 'aa', 'aaa', 'aaa', 'aaa', 'aaa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier_items`
+--
+
+CREATE TABLE `supplier_items` (
+  `id` int(11) NOT NULL auto_increment,
+  `company` varchar(100) NOT NULL,
+  `item_des` varchar(100) NOT NULL,
+  `item_cat` varchar(50) NOT NULL,
+  `item_id` varchar(100) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `supplier_items`
+--
+
